@@ -48,7 +48,7 @@ class solveCAPTCHA
         $http->setHeader('user-agent', $this->ua);
         $http->setHeader('Pragma', 'no-cache');
         $http->setHeader('Accept', '*/*');
-        Connection::useProxy(Constants::HTTP_PROXY);
+        //Connection::useProxy(Constants::HTTP_PROXY);
         $result = $http->get($this->url);
         
         return trim(strip_tags($this->getSTR($result,'<input type="hidden" id="recaptcha-token" value="', '"')));
@@ -73,7 +73,7 @@ class solveCAPTCHA
         $http->setHeader('referer', $this->url);
         $http->setHeader('accept-encoding', '');
         $http->setHeader('accept-language', 'en-US,en;q=0.9');
-        Connection::useProxy(Constants::HTTP_PROXY);
+        //Connection::useProxy(Constants::HTTP_PROXY);
         $result = $http->post(Constants::CAPTCHA_ENTERPRISE_RELOAD_URL.$this->key, $postFields);
         
         return trim(strip_tags($this->getSTR($result,'["rresp","', '"')));
